@@ -1,12 +1,23 @@
 "use client";
 import React, { useState } from "react";
+import { useLocalStorage } from "./useLocalStorage";
 import Image from "next/image";
-import Link from "next/link";
 
 import logo from "../../../public/images/logo.svg";
+import Cart from "../../../public/images/icon-cart.svg";
+import User from "../../../public/images/image-avatar.png";
 
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [cartOpen, setCartOpen] = useState(false);
+
+  const toggleM = () => {
+    setMenuOpen((old) => !old);
+  };
+
+  const toggleC = () => {
+    setCartOpen((old2) => !old2);
+  };
 
   return (
     <div className="  w-full h-[70px] flex flex-row items-center font-Epilogue border-neutral-400 border-b-2 border-opacity-20 ">
@@ -60,13 +71,39 @@ export default function Navbar() {
             </button>
           </div>
 
-          {/* Login buttons */}
-          <div className="flex flex-row  h-[60px] mr-4  ">
-            <button className=" rounded-2xl w-[100px] h-[45px]  place-self-center font-Epilogue  text-gray-500 font-semibold  hover:text-black ">
-              Cart
+          {/* Cart || User */}
+          <div className=" flex flex-row w-[150px] h-[60px] mr-4 justify-around ">
+            <button
+              className="  rounded-2xl w-[30px] h-[30px]  place-self-center  "
+              onClick={toggleC}
+            >
+              <Image
+                src={Cart}
+                alt="Cart"
+                width={30}
+                height={30}
+                className=" w-30 h-auto"
+              />
             </button>
-            <button className=" rounded-2xl w-[100px] h-[45px]  place-self-center font-Epilogue border-2 border-gray-500 hover:border-black text-gray-500 font-semibold  hover:text-black ">
-              User
+            <div className="relative">
+              {cartOpen ? (
+                <div className=" absolute z-10 top-16 -right-28 w-[300px] min-h-32 rounded-xl shadow-zinc-400 shadow-lg bg-gray-100">
+                  <h1 className="m-2 font-semibold text-black">Cart</h1>
+                  <div className="h-[1px] bg-slate-300" />
+                  {<div></div>}
+                </div>
+              ) : (
+                <div></div>
+              )}
+            </div>
+            <button className="rounded-full w-[45px] h-[45px]  place-self-center justify-center border-4 hover:border-4 hover:border-orange-400 ">
+              <Image
+                src={User}
+                alt="User"
+                width={45}
+                height={45}
+                className=" w-45 h-auto"
+              />
             </button>
           </div>
         </div>

@@ -1,3 +1,6 @@
+"use client";
+
+import { useLocalStorage } from "./components/useLocalStorage";
 import Navbar from "./components/navbar";
 import Product from "./components/product";
 
