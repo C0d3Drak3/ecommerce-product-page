@@ -36,35 +36,35 @@ export default function Navbar() {
           {/* menu buttons */}
           <div className="flex flex-row text-gray-500  font-medium">
             <button
-              className="hover:text-black flex flex-row items-center border-orange-500 hover:border-b-2 mx-4"
+              className="hover:text-black flex flex-row items-center hover:border-orange-500 border-b-2 border-transparent mx-4"
               onClick=""
             >
               Collections
             </button>
 
             <button
-              className="hover:text-black flex flex-row items-center border-orange-500 hover:border-b-2 mx-4"
+              className="hover:text-black flex flex-row items-center hover:border-orange-500 border-b-2 border-transparent mx-4"
               onClick=""
             >
               Men
             </button>
 
             <button
-              className="hover:text-black flex flex-row items-center border-orange-500 hover:border-b-2 mx-4"
+              className="hover:text-black flex flex-row items-center hover:border-orange-500 border-b-2 border-transparent mx-4"
               onClick=""
             >
               Women
             </button>
 
             <button
-              className="hover:text-black flex flex-row items-center border-orange-500 hover:border-b-2 mx-4"
+              className="hover:text-black flex flex-row items-center hover:border-orange-500 border-b-2 border-transparent mx-4"
               onClick=""
             >
               About
             </button>
 
             <button
-              className="hover:text-black flex flex-row items-center border-orange-500 hover:border-b-2 mx-4"
+              className="hover:text-black flex flex-row items-center hover:border-orange-500 border-b-2 border-transparent mx-4"
               onClick=""
             >
               Contact
@@ -74,7 +74,7 @@ export default function Navbar() {
           {/* Cart || User */}
           <div className=" flex flex-row w-[150px] h-[60px] mr-4 justify-around ">
             <button
-              className="  rounded-2xl w-[30px] h-[30px]  place-self-center  "
+              className=" relative rounded-2xl w-[30px] h-[30px]  place-self-center  "
               onClick={toggleC}
             >
               <Image
@@ -84,6 +84,10 @@ export default function Navbar() {
                 height={30}
                 className=" w-30 h-auto"
               />
+              {/* mapear los objetos en el store para contar */}
+              <div className="absolute z-10 -top-1 -right-1 rounded-full w-[23px] h-[17px] text-[12px] text-white bg-orange-400">
+                1{/* conteo de items*/}
+              </div>
             </button>
             <div className="relative">
               {cartOpen ? (
@@ -93,7 +97,9 @@ export default function Navbar() {
                   {<div></div>}
                 </div>
               ) : (
-                <div></div>
+                <div>
+                  {/* mapear los objetos en el store para listarlos aqui*/}
+                </div>
               )}
             </div>
             <button className="rounded-full w-[45px] h-[45px]  place-self-center justify-center border-4 hover:border-4 hover:border-orange-400 ">
