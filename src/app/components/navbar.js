@@ -94,12 +94,15 @@ export default function Navbar() {
                 <div className=" absolute z-10 top-16 -right-28 w-[300px] min-h-32 rounded-xl shadow-zinc-400 shadow-lg bg-gray-100">
                   <h1 className="m-2 font-semibold text-black">Cart</h1>
                   <div className="h-[1px] bg-slate-300" />
-                  {<div></div>}
+                  {<div>{/* mapeo  */}</div>}
+                  <div className="flex justify-center mx-2 ">
+                    <button className=" flex rounded-lg bg-orange-400 w-[200px] h-[50px] font-semibold text-black justify-center py-4">
+                      Checkout
+                    </button>
+                  </div>
                 </div>
               ) : (
-                <div>
-                  {/* mapear los objetos en el store para listarlos aqui*/}
-                </div>
+                <></>
               )}
             </div>
             <button className="rounded-full w-[45px] h-[45px]  place-self-center justify-center border-4 hover:border-4 hover:border-orange-400 ">
