@@ -6,6 +6,8 @@ import Image from "next/image";
 import logo from "../../../public/images/logo.svg";
 import Cart from "../../../public/images/icon-cart.svg";
 import User from "../../../public/images/image-avatar.png";
+import Trash from "../../../public/images/icon-delete.svg";
+import Zapas1t from "../../../public/images/image-product-1-thumbnail.jpg";
 
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -95,8 +97,35 @@ export default function Navbar() {
                   <h1 className="m-2 font-semibold text-black">Cart</h1>
                   <div className="h-[1px] bg-slate-300" />
                   {<div>{/* mapeo  */}</div>}
-                  <div className="flex justify-center mx-2 ">
-                    <button className=" flex rounded-lg bg-orange-400 w-[200px] h-[50px] font-semibold text-black justify-center py-4">
+                  <div className="flex justify-center">
+                    <div className="flex flex-row w-[250px] h-[50px] items-center justify-around mt-4">
+                      <Image
+                        src={Zapas1t}
+                        alt="product"
+                        width={45}
+                        height={45}
+                        className=" rounded-md w-[45px] h-[45px]"
+                      />
+                      <div className="flex flex-col w-[190px] px-1 text-slate-500">
+                        <h1 className="">Name goes here</h1>
+                        <div className="flex flex-row text-[12px]">
+                          <p>Unit $$ x COUNT</p>
+                          <p>TOTAL $$</p>
+                        </div>
+                      </div>
+                      <button className="h-[20px]">
+                        <Image
+                          src={Trash}
+                          alt="Trash"
+                          width={45}
+                          height={45}
+                          className=" w-[15px] h-[18px]"
+                        />
+                      </button>
+                    </div>
+                  </div>
+                  <div className="flex justify-center my-6  ">
+                    <button className=" flex rounded-lg bg-orange-400 w-[250px] h-[50px] font-semibold text-black justify-center py-4 hover:opacity-75">
                       Checkout
                     </button>
                   </div>

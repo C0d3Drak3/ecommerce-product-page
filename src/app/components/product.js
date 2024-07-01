@@ -63,7 +63,7 @@ export default function Product() {
             </div>
           </div>
 
-          <button className=" w-[180px] h-[50px] bg-orange-400 rounded-xl ">
+          <button className=" w-[180px] h-[50px] bg-orange-400 rounded-xl hover:opacity-75 ">
             Add to cart
           </button>
         </div>

@@ -19,20 +19,33 @@ export default function Product() {
 
   const [mainImage, setMainImage] = useState(productImgs.images[0]);
   const [selectedThumbnail, setSelectedThumbnail] = useState(0);
+  const [lightboxOp, setLightboxOp] = useState(false);
 
   const handleThumbnailClick = (index) => {
     setMainImage(productImgs.images[index]);
     setSelectedThumbnail(index);
   };
 
+  const handleLightbox = () => {
+    lightboxOp ? setLightboxOp(false) : setLightboxOp(true);
+  };
+
   return (
     <div className="flex flex-col h-[600px] w-[400px] justify-center p-4">
-      <div className="flex justify-center mb-4 mx-[9px]">
+      <div
+        className="relative flex flex-col justify-center mb-4 mx-[9px] cursor-pointer"
+        onClick={handleLightbox}
+      >
         <Image
           src={mainImage}
           alt="Producto principal"
           className="w-full h-auto rounded-xl"
         />
+        {lightboxOp ? (
+          <div className="absolute -top-0 -right-0 z-30 w-screen h-screen bg-black opacity-10 "></div>
+        ) : (
+          <></>
+        )}
       </div>
       <div className="flex justify-center space-x-2">
         {productImgs.thumbs.map((thumb, index) => (
