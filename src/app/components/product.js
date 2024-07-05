@@ -1,11 +1,56 @@
 "use client";
-import React, { useState } from "react";
-import Image from "next/image";
+import React, { useEffect, useState } from "react";
 import Gallery from "./gallery";
+import { useLocalStorage } from "./useLocalStorage";
+
+const sneakersLE1 = {
+  name: "Fall Limited Edition Sneakers",
+  description:
+    "These low-profile sneakers are your perfect casual wear companion. Featuring a durable rubber outer sole, they’ll withstand everything the weather can offer.",
+  stock: 9,
+  price: 250.0,
+  discount: 50,
+  cartCount: 0,
+};
 
 export default function Product() {
+  const { setItem, getItem } = useLocalStorage("sneakersLE1");
+  const [count, setCount] = useState(0);
+  const [disB1, setDisB1] = useState(true);
+  const [disB2, setDisB2] = useState(false);
+
+  useEffect(() => {
+    // Initialize localStorage with sneakersLE1 object if not already set
+    if (!getItem()) {
+      setItem(sneakersLE1);
+    }
+  }, []);
+
+  const plusProd = () => {
+    const currentProduct = getItem();
+    if (count < currentProduct.stock) {
+      setCount(count + 1);
+      setDisB1(false);
+    }
+  };
+
+  const minProd = () => {
+    if (count > 0) {
+      setCount(count - 1);
+      if (count === 1) setDisB1(true);
+    }
+  };
+
+  const addToCart = () => {
+    const currentProduct = getItem();
+    if (count <= currentProduct.stock) {
+      currentProduct.cartCount = count;
+      setItem(currentProduct);
+    }
+  };
+
   return (
-    <div className="flex flex-row justify-between text-black">
+    <div className="flex flex-row justify-between text-black ">
       <Gallery />
       <div className="flex flex-col border-2 border-transparent h-[600px] w-[400px] justify-center">
         <h1>Sneaker Company</h1>
@@ -18,7 +63,7 @@ export default function Product() {
         <div className="flex flex-col space-y-2">
           <div className="flex flex-row">
             <span className=" font-bold text-[25px]">
-              $125.00{/*Product total cost x count */}
+              $125.00 {/*Product total cost x count */}
             </span>
             <div className=" rounded-lg bg-black w-[40px] h-[30px] text-white text-[15px] font-bold justify-center p-1">
               50%
@@ -31,25 +76,27 @@ export default function Product() {
             <div className="flex flex-row bg-slate-100 w-[90px] h-[32px] align-middle justify-between rounded-lg mt-2 text-blue-600 font-bold">
               <button
                 className=" w-[30px] h-5 p-[14px]"
-                onClick={""}
-                disabled={""}
+                onClick={minProd}
+                disabled={disB1}
               >
                 <svg
                   width="15"
                   height="5"
                   xmlns="http://www.w3.org/2000/svg"
-                  className={`w-auto h-auto transition-colors duration-200 fill-current text-gray-400 ${`hover:text-blue-600`}`}
+                  className={`w-auto h-auto transition-colors duration-200 fill-current text-gray-400 ${
+                    disB1 ? "" : `hover:text-blue-600`
+                  }`}
                 >
                   <path d="M9.256 2.66c.204 0 .38-.056.53-.167.148-.11.222-.243.222-.396V.722c0-.152-.074-.284-.223-.395a.859.859 0 0 0-.53-.167H.76a.859.859 0 0 0-.53.167C.083.437.009.57.009.722v1.375c0 .153.074.285.223.396a.859.859 0 0 0 .53.167h8.495Z" />
                 </svg>
               </button>
               <div className=" w-[30px]  flex justify-center p-1">
-                <span>0{/* cantidad a pedir */}</span>
+                <span>{count}</span>
               </div>
               <button
                 className=" w-[30px] h-5  p-[10px]"
-                onClick={""}
-                disabled={""}
+                onClick={plusProd}
+                disabled={disB2}
               >
                 <svg
                   width="15"
@@ -62,8 +109,10 @@ export default function Product() {
               </button>
             </div>
           </div>
-
-          <button className=" w-[180px] h-[50px] bg-orange-400 rounded-xl hover:opacity-75 ">
+          <button
+            className=" w-[180px] h-[50px] bg-orange-400 rounded-xl hover:opacity-75 "
+            onClick={addToCart}
+          >
             Add to cart
           </button>
         </div>
