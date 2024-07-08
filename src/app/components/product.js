@@ -1,7 +1,7 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
 import Gallery from "./gallery";
-import { useLocalStorage } from "./useLocalStorage";
+import { useCart } from "../context/CartContext";
 
 const sneakersLE1 = {
   name: "Fall Limited Edition Sneakers",
@@ -14,21 +14,13 @@ const sneakersLE1 = {
 };
 
 export default function Product() {
-  const { setItem, getItem } = useLocalStorage("sneakersLE1");
+  const { cart, addToCart } = useCart();
   const [count, setCount] = useState(0);
   const [disB1, setDisB1] = useState(true);
   const [disB2, setDisB2] = useState(false);
 
-  useEffect(() => {
-    // Initialize localStorage with sneakersLE1 object if not already set
-    if (!getItem()) {
-      setItem(sneakersLE1);
-    }
-  }, []);
-
   const plusProd = () => {
-    const currentProduct = getItem();
-    if (count < currentProduct.stock) {
+    if (count < sneakersLE1.stock) {
       setCount(count + 1);
       setDisB1(false);
     }
@@ -41,11 +33,13 @@ export default function Product() {
     }
   };
 
-  const addToCart = () => {
-    const currentProduct = getItem();
-    if (count <= currentProduct.stock) {
-      currentProduct.cartCount = count;
-      setItem(currentProduct);
+  const addToCartFunction = () => {
+    const currentProduct = cart.find((p) => p.id === sneakersLE1.id);
+    if (currentProduct) {
+      currentProduct.cartCount += count;
+      addToCart([...cart]);
+    } else {
+      addToCart([...cart, { ...sneakersLE1, cartCount: count }]);
     }
   };
 
@@ -111,7 +105,7 @@ export default function Product() {
           </div>
           <button
             className=" w-[180px] h-[50px] bg-orange-400 rounded-xl hover:opacity-75 "
-            onClick={addToCart}
+            onClick={addToCartFunction}
           >
             Add to cart
           </button>
