@@ -11,21 +11,20 @@ import Trash from "../../../public/images/icon-delete.svg";
 import Zapas1t from "../../../public/images/image-product-1-thumbnail.jpg";
 
 export default function Navbar() {
-  const { cart, removeFromCart } = useCart(); // Utiliza el contexto del carrito
+  const { cart, removeFromCart } = useCart();
   const [cartCount, setCartCount] = useState(0);
   const [menuOpen, setMenuOpen] = useState(false);
   const [cartOpen, setCartOpen] = useState(false);
   const [product, setProduct] = useState(null);
 
   useEffect(() => {
-    // Calcula el número total de productos en el carrito
     const totalCartCount = cart.reduce(
-      (total, item) => total + item.quantity,
+      (total, item) => total + item.cartCount,
       0
     );
     setCartCount(totalCartCount);
     setProduct(cart.length > 0 ? cart[0] : null);
-  }, [cart]); // Ejecuta este efecto cada vez que cambie el contenido del carrito
+  }, [cart]);
 
   const toggleMenu = () => {
     setMenuOpen((prev) => !prev);
@@ -36,7 +35,7 @@ export default function Navbar() {
   };
 
   const handleRemoveFromCart = (productId) => {
-    removeFromCart(productId); // Implementa la función para eliminar productos del carrito
+    removeFromCart(productId);
   };
 
   return (
@@ -52,7 +51,6 @@ export default function Navbar() {
       </div>
 
       <div className="flex w-full justify-between">
-        {/* menu buttons */}
         <div className="flex flex-row text-gray-500 font-medium">
           <button
             className="hover:text-black flex flex-row items-center hover:border-orange-500 border-b-2 border-transparent mx-4"
@@ -60,28 +58,24 @@ export default function Navbar() {
           >
             Collections
           </button>
-
           <button
             className="hover:text-black flex flex-row items-center hover:border-orange-500 border-b-2 border-transparent mx-4"
             onClick=""
           >
             Men
           </button>
-
           <button
             className="hover:text-black flex flex-row items-center hover:border-orange-500 border-b-2 border-transparent mx-4"
             onClick=""
           >
             Women
           </button>
-
           <button
             className="hover:text-black flex flex-row items-center hover:border-orange-500 border-b-2 border-transparent mx-4"
             onClick=""
           >
             About
           </button>
-
           <button
             className="hover:text-black flex flex-row items-center hover:border-orange-500 border-b-2 border-transparent mx-4"
             onClick=""
@@ -90,7 +84,6 @@ export default function Navbar() {
           </button>
         </div>
 
-        {/* Cart || User */}
         <div className="flex flex-row w-[150px] h-[60px] mr-4 justify-around">
           <button
             className="relative rounded-2xl w-[30px] h-[30px] place-self-center"
@@ -137,7 +130,10 @@ export default function Navbar() {
                           </p>
                         </div>
                       </div>
-                      <button className="h-[20px]" onClick={removeFromCart}>
+                      <button
+                        className="h-[20px]"
+                        onClick={() => handleRemoveFromCart(product?.id)}
+                      >
                         <Image
                           src={Trash}
                           alt="Trash"

@@ -1,9 +1,10 @@
 "use client";
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Gallery from "./gallery";
 import { useCart } from "../context/CartContext";
 
 const sneakersLE1 = {
+  id: 1,
   name: "Fall Limited Edition Sneakers",
   description:
     "These low-profile sneakers are your perfect casual wear companion. Featuring a durable rubber outer sole, they’ll withstand everything the weather can offer.",
@@ -14,37 +15,28 @@ const sneakersLE1 = {
 };
 
 export default function Product() {
-  const { cart, addToCart } = useCart();
+  const { addToCart } = useCart();
   const [count, setCount] = useState(0);
-  const [disB1, setDisB1] = useState(true);
-  const [disB2, setDisB2] = useState(false);
 
   const plusProd = () => {
     if (count < sneakersLE1.stock) {
       setCount(count + 1);
-      setDisB1(false);
     }
   };
 
   const minProd = () => {
     if (count > 0) {
       setCount(count - 1);
-      if (count === 1) setDisB1(true);
     }
   };
 
   const addToCartFunction = () => {
-    const currentProduct = cart.find((p) => p.id === sneakersLE1.id);
-    if (currentProduct) {
-      currentProduct.cartCount += count;
-      addToCart([...cart]);
-    } else {
-      addToCart([...cart, { ...sneakersLE1, cartCount: count }]);
-    }
+    const productWithCount = { ...sneakersLE1, cartCount: count };
+    addToCart(productWithCount);
   };
 
   return (
-    <div className="flex flex-row justify-between text-black ">
+    <div className="flex flex-row justify-between text-black">
       <Gallery />
       <div className="flex flex-col border-2 border-transparent h-[600px] w-[400px] justify-center">
         <h1>Sneaker Company</h1>
@@ -56,41 +48,41 @@ export default function Product() {
         </p>
         <div className="flex flex-col space-y-2">
           <div className="flex flex-row">
-            <span className=" font-bold text-[25px]">
-              $125.00 {/*Product total cost x count */}
+            <span className="font-bold text-[25px]">
+              ${sneakersLE1.price * (1 - sneakersLE1.discount / 100)}
             </span>
-            <div className=" rounded-lg bg-black w-[40px] h-[30px] text-white text-[15px] font-bold justify-center p-1">
-              50%
+            <div className="rounded-lg bg-black w-[40px] h-[30px] text-white text-[15px] font-bold justify-center p-1">
+              {sneakersLE1.discount}%
             </div>
           </div>
-          <span> $250.00 {/* product unit cost + discounts */}</span>
+          <span>${sneakersLE1.price}</span>
         </div>
         <div className="flex flex-row">
           <div>
             <div className="flex flex-row bg-slate-100 w-[90px] h-[32px] align-middle justify-between rounded-lg mt-2 text-blue-600 font-bold">
               <button
-                className=" w-[30px] h-5 p-[14px]"
+                className="w-[30px] h-5 p-[14px]"
                 onClick={minProd}
-                disabled={disB1}
+                disabled={count === 0}
               >
                 <svg
                   width="15"
                   height="5"
                   xmlns="http://www.w3.org/2000/svg"
                   className={`w-auto h-auto transition-colors duration-200 fill-current text-gray-400 ${
-                    disB1 ? "" : `hover:text-blue-600`
+                    count === 0 ? "" : `hover:text-blue-600`
                   }`}
                 >
                   <path d="M9.256 2.66c.204 0 .38-.056.53-.167.148-.11.222-.243.222-.396V.722c0-.152-.074-.284-.223-.395a.859.859 0 0 0-.53-.167H.76a.859.859 0 0 0-.53.167C.083.437.009.57.009.722v1.375c0 .153.074.285.223.396a.859.859 0 0 0 .53.167h8.495Z" />
                 </svg>
               </button>
-              <div className=" w-[30px]  flex justify-center p-1">
+              <div className="w-[30px] flex justify-center p-1">
                 <span>{count}</span>
               </div>
               <button
-                className=" w-[30px] h-5  p-[10px]"
+                className="w-[30px] h-5 p-[10px]"
                 onClick={plusProd}
-                disabled={disB2}
+                disabled={count >= sneakersLE1.stock}
               >
                 <svg
                   width="15"
@@ -104,7 +96,7 @@ export default function Product() {
             </div>
           </div>
           <button
-            className=" w-[180px] h-[50px] bg-orange-400 rounded-xl hover:opacity-75 "
+            className="w-[180px] h-[50px] bg-orange-400 rounded-xl hover:opacity-75"
             onClick={addToCartFunction}
           >
             Add to cart
