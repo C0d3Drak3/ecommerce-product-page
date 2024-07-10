@@ -22,7 +22,7 @@ export const CartProvider = ({ children }) => {
     }
   }, [cart, setItem]);
 
-  const addToCart = (product) => {
+  /*const addToCart = (product) => {
     setCart((prevCart) => {
       const existingProduct = prevCart.find((p) => p.id === product.id);
       if (existingProduct) {
@@ -33,16 +33,23 @@ export const CartProvider = ({ children }) => {
         return [...prevCart, { ...product, cartCount: 1 }];
       }
     });
+  };*/
+
+  const addToCart = (product, quantity) => {
+    setCart((prevCart) => {
+      const existingProduct = prevCart.find((p) => p.id === product.id);
+      if (existingProduct) {
+        return prevCart.map((p) =>
+          p.id === product.id ? { ...p, cartCount: p.cartCount + quantity } : p
+        );
+      } else {
+        return [...prevCart, { ...product, cartCount: quantity }];
+      }
+    });
   };
 
   const removeFromCart = (productId) => {
-    setCart((prevCart) =>
-      prevCart
-        .map((p) =>
-          p.id === productId ? { ...p, cartCount: p.cartCount - 1 } : p
-        )
-        .filter((p) => p.cartCount > 0)
-    );
+    setCart((prevCart) => prevCart.filter((p) => p.id !== productId));
   };
 
   return (
