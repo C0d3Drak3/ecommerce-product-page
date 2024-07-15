@@ -2,6 +2,8 @@
 import React, { useState } from "react";
 import Gallery from "./gallery";
 import { useCart } from "../context/CartContext";
+import Image from "next/image";
+import Cart from "../../../public/images/icon-cart.svg";
 
 const sneakersLE1 = {
   id: 1,
@@ -55,15 +57,17 @@ export default function Product() {
           the weather can offer.
         </p>
         <div className="flex flex-col space-y-2">
-          <div className="flex flex-row">
-            <span className="font-bold text-[25px]">
-              ${sneakersLE1.price * (1 - sneakersLE1.discount / 100)}
+          <div className="flex flex-row h-[30px] items-center">
+            <span className="font-bold text-[25px] ">
+              ${sneakersLE1.price * (1 - sneakersLE1.discount / 100)}.00
             </span>
-            <div className="rounded-lg bg-black w-[40px] h-[30px] text-white text-[15px] font-bold justify-center p-1">
+            <div className="rounded-lg bg-black w-[50px] h-[25px] text-white text-[15px] font-bold text-center p-[3px] ml-4">
               {sneakersLE1.discount}%
             </div>
           </div>
-          <span>${sneakersLE1.price}</span>
+          <span>
+            <s className=" font-semibold text-gray-600">${sneakersLE1.price}</s>
+          </span>
         </div>
         <div className="flex flex-row">
           <div>
@@ -108,10 +112,19 @@ export default function Product() {
             </div>
           </div>
           <button
-            className="w-[180px] h-[50px] bg-orange-400 rounded-xl hover:opacity-75"
+            className="w-[180px] h-[50px] bg-orange-400 rounded-xl hover:opacity-75 items-center justify-center flex flex-row"
             onClick={addToCartFunction}
           >
-            Add to cart
+            <div className="flex flex-row h-[20px] font-semibold items-center">
+              <Image
+                src={Cart}
+                alt="Cart"
+                width={30}
+                height={30}
+                className="w-[20px] h-[18px] mr-1"
+              />
+              Add to cart
+            </div>
           </button>
         </div>
       </div>
