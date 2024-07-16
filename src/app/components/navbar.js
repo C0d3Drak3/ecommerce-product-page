@@ -1,6 +1,5 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import { useLocalStorage } from "./useLocalStorage";
 import { useCart } from "../context/CartContext";
 import Image from "next/image";
 
@@ -104,13 +103,13 @@ export default function Navbar() {
           </button>
           <div className="relative">
             {cartOpen && (
-              <div className="absolute z-10 top-16 -right-28 w-[300px] min-h-32 rounded-xl shadow-zinc-400 shadow-lg bg-gray-100">
+              <div className="absolute z-10 top-16 -right-[120px] w-[320px] border-t-[1px] border-slate-300 min-h-32 rounded-xl shadow-zinc-400 shadow-lg bg-gray-100">
                 <h1 className="m-2 font-semibold text-black">Cart</h1>
                 <div className="h-[1px] bg-slate-300" />
                 {cartCount > 0 ? (
                   <div>
                     <div className="flex justify-center">
-                      <div className="flex flex-row w-[250px] h-[50px] items-center justify-around mt-4">
+                      <div className="flex flex-row w-[280px] h-[50px] items-center justify-between mt-4">
                         <Image
                           src={Zapas1t}
                           alt="product"
@@ -118,12 +117,15 @@ export default function Navbar() {
                           height={45}
                           className="rounded-md w-[45px] h-[45px]"
                         />
-                        <div className="flex flex-col w-[190px] px-1 text-slate-500">
+                        <div className="flex flex-col w-[200px] h-[48px] text-slate-500 text-[14px]">
                           <h1 className="">{product?.name}</h1>
                           <div className="flex flex-row text-[12px]">
                             <p>
                               ${product?.price * (1 - product?.discount / 100)}
-                              {".00 "}x {cartCount} = $
+                              {".00 "}x {cartCount}
+                            </p>
+                            <p className=" font-semibold text-black">
+                              = $
                               {(
                                 product?.price *
                                 cartCount *
@@ -147,7 +149,7 @@ export default function Navbar() {
                       </div>
                     </div>
                     <div className="flex justify-center my-6">
-                      <button className="flex rounded-lg bg-orange-400 w-[250px] h-[50px] font-semibold text-black justify-center py-4 hover:opacity-75">
+                      <button className="flex rounded-lg bg-orange-400 w-[280px] h-[50px] font-semibold text-black justify-center py-4 hover:opacity-75">
                         Checkout
                       </button>
                     </div>
