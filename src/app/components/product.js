@@ -46,9 +46,9 @@ export default function Product() {
   const cartCount = productInCart ? productInCart.cartCount : 0;
 
   return (
-    <div className="flex flex-row justify-between text-black">
+    <div className="flex md:flex-row flex-col md:justify-between  items-center text-black mb-6">
       <Gallery />
-      <div className="flex flex-col border-2 border-transparent h-[600px] w-[400px] justify-center">
+      <div className="flex flex-col border-2  border-transparent md:h-[600px] w-[400px] justify-center">
         <h1>Sneaker Company</h1>
         <h1 className="font-bold text-[40px]">Fall Limited Edition Sneakers</h1>
         <p className="flex my-2">
@@ -56,7 +56,7 @@ export default function Product() {
           Featuring a durable rubber outer sole, they’ll withstand everything
           the weather can offer.
         </p>
-        <div className="flex flex-col space-y-2">
+        <div className="flex md:flex-col flex-row justify-between  md:space-y-2">
           <div className="flex flex-row h-[30px] items-center">
             <span className="font-bold text-[25px] ">
               ${sneakersLE1.price * (1 - sneakersLE1.discount / 100)}.00
@@ -65,13 +65,13 @@ export default function Product() {
               {sneakersLE1.discount}%
             </div>
           </div>
-          <span>
+          <span className="h-[30px]">
             <s className=" font-semibold text-gray-600">${sneakersLE1.price}</s>
           </span>
         </div>
-        <div className="flex flex-row justify-between items-center">
+        <div className="flex flex-col md:flex-row md:justify-between items-center md:mt-0 mt-3">
           <div>
-            <div className="flex flex-row bg-slate-100 w-[90px] h-[32px] align-middle justify-between rounded-lg mt-2 text-blue-600 font-bold">
+            <div className="flex flex-row md:w-[100px] w-[250px] h-[50px] align-middle justify-between rounded-lg mt-2 text-blue-600 font-bold">
               <button
                 className="w-[30px] h-5 p-[14px]"
                 onClick={minProd}
@@ -112,7 +112,7 @@ export default function Product() {
             </div>
           </div>
           <button
-            className="w-[240px] h-[50px] bg-orange-400 rounded-xl hover:opacity-75 items-center justify-center flex flex-row m-2"
+            className="w-[240px] h-[50px] bg-orange-400 rounded-xl hover:opacity-75 items-center justify-center flex flex-row md:m-2 m-5 md:shadow-none shadow-lg shadow-orange-300"
             onClick={addToCartFunction}
           >
             <div className="flex flex-row h-[20px] font-semibold items-center">
