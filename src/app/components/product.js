@@ -48,9 +48,11 @@ export default function Product() {
   return (
     <div className="flex md:flex-row flex-col md:justify-between  items-center text-black mb-6">
       <Gallery />
-      <div className="flex flex-col border-2  border-transparent md:h-[600px] w-[400px] justify-center">
-        <h1>Sneaker Company</h1>
-        <h1 className="font-bold text-[40px]">Fall Limited Edition Sneakers</h1>
+      <div className="flex flex-col mx-4 md:mt-0 mt-4  border-2  border-transparent md:h-[600px] min-w-[350px] justify-center">
+        <h1 className="">Sneaker Company</h1>
+        <h1 className="font-bold text-[30px] md:text-[40px]">
+          Fall Limited Edition Sneakers
+        </h1>
         <p className="flex my-2">
           These low-profile sneakers are your perfect casual wear companion.
           Featuring a durable rubber outer sole, they’ll withstand everything
