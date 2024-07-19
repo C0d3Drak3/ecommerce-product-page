@@ -22,19 +22,6 @@ export const CartProvider = ({ children }) => {
     }
   }, [cart, setItem]);
 
-  /*const addToCart = (product) => {
-    setCart((prevCart) => {
-      const existingProduct = prevCart.find((p) => p.id === product.id);
-      if (existingProduct) {
-        return prevCart.map((p) =>
-          p.id === product.id ? { ...p, cartCount: p.cartCount + 1 } : p
-        );
-      } else {
-        return [...prevCart, { ...product, cartCount: 1 }];
-      }
-    });
-  };*/
-
   const addToCart = (product, quantity) => {
     setCart((prevCart) => {
       const existingProduct = prevCart.find((p) => p.id === product.id);

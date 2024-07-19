@@ -172,7 +172,7 @@ export default function Navbar() {
         </button>
         <div className="relative">
           {cartOpen && (
-            //<div className="fixed md:absolute z-10 top-16 md:-right-[120px] inset-0 w-[320px] h-[300px] border-t-[1px] border-slate-300 min-h-32 rounded-xl shadow-zinc-400 shadow-lg bg-gray-100">
+            <div className="absolute z-10 md:top-16 top-[70px] md:-right-[120px] -right-[50px] w-[320px] border-t-[1px] border-slate-300 min-h-32 rounded-xl shadow-zinc-400 shadow-lg bg-gray-100">
               <h1 className="m-2 font-semibold text-black">Cart</h1>
               <div className="h-[1px] bg-slate-300" />
               {cartCount > 0 ? (
