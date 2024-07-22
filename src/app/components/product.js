@@ -46,19 +46,21 @@ export default function Product() {
   const cartCount = productInCart ? productInCart.cartCount : 0;
 
   return (
-    <div className="flex md:flex-row flex-col md:justify-between  items-center text-black mb-6">
+    <div className=" flex md:flex-row flex-col md:justify-between text-black mb-6 md:max-w-[1200px]">
       <Gallery />
-      <div className="flex flex-col mx-4 md:mt-0 mt-4  border-2  border-transparent md:h-[600px] min-w-[350px] max-w-[400px] justify-center">
-        <h1 className="">Sneaker Company</h1>
-        <h1 className="font-bold text-[30px] md:text-[40px]">
+      <div className="md:ml-10 flex flex-col mx-4 md:mt-0 mt-4  border-2  border-transparent md:h-[600px] min-w-[350px] max-w-[400px] justify-center">
+        <h1 className="tracking-[3px] font-semibold text-[12px] text-slate-400 mb-4">
+          SNEAKER COMPANY
+        </h1>
+        <h1 className="font-bold text-[30px] md:text-[40px] leading-tight mb-4">
           Fall Limited Edition Sneakers
         </h1>
-        <p className="flex my-2">
+        <p className="flex my-2 text-slate-400 mb-4">
           These low-profile sneakers are your perfect casual wear companion.
           Featuring a durable rubber outer sole, they’ll withstand everything
           the weather can offer.
         </p>
-        <div className="flex md:flex-col flex-row justify-between  md:space-y-2">
+        <div className="flex md:flex-col flex-row justify-between  md:space-y-2 mb-2">
           <div className="flex flex-row h-[30px] items-center">
             <span className="font-bold text-[25px] ">
               ${sneakersLE1.price * (1 - sneakersLE1.discount / 100)}.00
@@ -68,7 +70,7 @@ export default function Product() {
             </div>
           </div>
           <span className="h-[30px]">
-            <s className=" font-semibold text-gray-600">${sneakersLE1.price}</s>
+            <s className=" font-semibold text-gray-400">${sneakersLE1.price}</s>
           </span>
         </div>
         <div className="flex flex-col md:flex-row md:justify-between items-center md:mt-0 mt-3">

@@ -45,10 +45,10 @@ export default function Product() {
   };
 
   return (
-    <div className="">
-      <div className="hidden md:flex flex-col h-[600px] w-[400px] justify-center p-4">
+    <div className="md:mr-10">
+      <div className="hidden md:flex flex-col h-[600px] w-[400px] justify-center">
         <div
-          className="relative flex flex-col justify-center mb-4 mx-[9px] cursor-pointer"
+          className="relative flex flex-col justify-center mb-4 mx-[0px] cursor-pointer"
           onClick={handleLightbox}
         >
           <Image
