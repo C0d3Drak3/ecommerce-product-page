@@ -45,7 +45,7 @@ export default function Product() {
   };
 
   return (
-    <div className="md:mr-10">
+    <div className="md:mr-10 min-w-[320px]">
       <div className="hidden md:flex flex-col h-[600px] w-[400px] justify-center">
         <div
           className="relative flex flex-col justify-center mb-4 mx-[0px] cursor-pointer"
@@ -57,7 +57,7 @@ export default function Product() {
             className="w-full h-auto rounded-xl"
           />
         </div>
-        <div className="flex justify-center space-x-2">
+        <div className="flex justify-center space-x-3">
           {productImgs.thumbs.map((thumb, index) => (
             <div
               key={index}

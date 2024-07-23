@@ -8,7 +8,7 @@ export default function Home() {
   return (
     <CartProvider>
       <main className="flex min-h-screen flex-col items-center justify-between md:p-4 bg-slate-50">
-        <div className="z-10 max-w-5xl w-full items-center  md:flex md:flex-col">
+        <div className="max-w-5xl w-full min-w-[300px] items-center  md:flex md:flex-col">
           <Navbar />
           <Product />
         </div>

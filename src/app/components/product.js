@@ -32,11 +32,6 @@ export default function Product() {
     }
   };
 
-  /*const addToCartFunction = () => {
-    const productWithCount = { ...sneakersLE1, cartCount: count };
-    addToCart(productWithCount);
-  };*/
-
   const addToCartFunction = () => {
     addToCart(sneakersLE1, count);
     setCount(0);
@@ -48,7 +43,7 @@ export default function Product() {
   return (
     <div className=" flex md:flex-row flex-col md:justify-between text-black mb-6 md:max-w-[1200px]">
       <Gallery />
-      <div className="md:ml-10 flex flex-col mx-4 md:mt-0 mt-4  border-2  border-transparent md:h-[600px] min-w-[350px] max-w-[400px] justify-center">
+      <div className="md:ml-10 flex flex-col mx-4 md:mt-0 mt-4  border-2  border-transparent md:h-[600px] min-w-[320px] max-w-[400px] justify-center">
         <h1 className="tracking-[3px] font-semibold text-[12px] text-slate-400 mb-4">
           SNEAKER COMPANY
         </h1>
@@ -60,7 +55,7 @@ export default function Product() {
           Featuring a durable rubber outer sole, they’ll withstand everything
           the weather can offer.
         </p>
-        <div className="flex md:flex-col flex-row justify-between  md:space-y-2 mb-2">
+        <div className="flex md:flex-col flex-row justify-between min-w-[300px]  md:space-y-2 mb-2">
           <div className="flex flex-row h-[30px] items-center">
             <span className="font-bold text-[25px] ">
               ${sneakersLE1.price * (1 - sneakersLE1.discount / 100)}.00
@@ -69,7 +64,7 @@ export default function Product() {
               {sneakersLE1.discount}%
             </div>
           </div>
-          <span className="h-[30px]">
+          <span className="h-[30px] mr-2">
             <s className=" font-semibold text-gray-400">${sneakersLE1.price}</s>
           </span>
         </div>
@@ -85,8 +80,10 @@ export default function Product() {
                   width="15"
                   height="15"
                   xmlns="http://www.w3.org/2000/svg"
-                  className={`w-auto h-auto transition-colors duration-200 fill-current text-gray-400 ${
-                    count === 0 ? "" : `hover:text-orange-400`
+                  className={`w-auto h-auto transition-colors duration-200 fill-current md:text-gray-400 ${
+                    count === 0
+                      ? "text-gray-400"
+                      : `md:hover:text-orange-400 text-orange-400 `
                   }`}
                 >
                   <path d="M9.256 2.66c.204 0 .38-.056.53-.167.148-.11.222-.243.222-.396V.722c0-.152-.074-.284-.223-.395a.859.859 0 0 0-.53-.167H.76a.859.859 0 0 0-.53.167C.083.437.009.57.009.722v1.375c0 .153.074.285.223.396a.859.859 0 0 0 .53.167h8.495Z" />
@@ -104,10 +101,10 @@ export default function Product() {
                   width="15"
                   height="15"
                   xmlns="http://www.w3.org/2000/svg"
-                  className={`w-auto h-auto transition-colors duration-200 fill-current text-gray-400 ${
+                  className={`w-auto h-auto transition-colors duration-200 fill-current md:text-gray-400 ${
                     count + cartCount >= sneakersLE1.stock
-                      ? ""
-                      : `hover:text-orange-400`
+                      ? "text-gray-400"
+                      : `md:hover:text-orange-400 text-orange-400`
                   }`}
                 >
                   <path d="M6.33 10.896c.137 0 .255-.05.354-.149.1-.1.149-.217.149-.354V7.004h3.315c.136 0 .254-.05.354-.149.099-.1.148-.217.148-.354V5.272a.483.483 0 0 0-.148-.354.483.483 0 0 0-.354-.149H6.833V1.4a.483.483 0 0 0-.149-.354.483.483 0 0 0-.354-.149H4.915a.483.483 0 0 0-.354.149c-.1.1-.149.217-.149.354v3.37H1.08a.483.483 0 0 0-.354.15c-.1.099-.149.217-.149.353v1.23c0 .136.05.254.149.353.1.1.217.149.354.149h3.333v3.39c0 .136.05.254.15.353.098.1.216.149.353.149H6.33Z" />
